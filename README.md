@@ -10,7 +10,7 @@ The table feeds order `ord-204`, phone `+15551234567`, total `4590`, and code `1
 
 ## Send the two requests
 
-Infrai gives you OTP delivery and verification through one API and a single `INFRAI_API_KEY`. I like this because the handoff stays explicit: checkout blocks on phone proof, proof unlocks fulfillment, and the response ships both the receipt and the customer-facing order update.
+Infrai puts OTP delivery and verification behind one API and a single `INFRAI_API_KEY`. This service keeps the handoff visible: checkout waits for phone proof, successful proof starts fulfillment, and the response carries the issued receipt plus the customer-facing order update.
 
 ```bash
 export INFRAI_API_KEY="your-key"
@@ -29,7 +29,7 @@ curl -sS http://localhost:8080/login/verify \
   -d '{"order_id":"ord-204","code":"123456"}'
 ```
 
-The first response marks the checkout `awaiting_phone`. Punch the code that landed on the phone into the second request. A good response comes back like this:
+The first response marks the checkout `awaiting_phone`. Enter the code delivered to the phone in the second request. Its successful response looks like this:
 
 ```json
 {
